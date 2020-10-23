@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_first">17sp</dimen>
+    <dimen name="text_second">15sp</dimen>
+    <dimen name="text_three">14sp</dimen>
+    <dimen name="text_four">13sp</dimen>
+    <dimen name="text_five">12sp</dimen>
+    <dimen name="text_sex">10sp</dimen>
+</resources>
