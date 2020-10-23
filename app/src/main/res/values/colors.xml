@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--    各级标题字体着色 first-four-->
     <color name="first">#222222</color>
     <color name="second">#333333</color>
     <color name="three">#666666</color>
     <color name="four">#999999</color>
+<!--    默认背景-->
     <color name="background">#ebebeb</color>
     <color name="white">#ffffff</color>
     <color name="colorPrimary">#6200EE</color>
