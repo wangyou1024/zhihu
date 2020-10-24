@@ -13,15 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.six.zhihu.R;
 import com.six.zhihu.entity.RecommendEntity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private List<RecommendEntity> recommendEntities;
+    private OnItemClickListener onItemClickListener;
+
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public RecommendAdapter(Context context) {
         this.mContext = context;
+        this.recommendEntities = new ArrayList<>();
     }
 
     public RecommendAdapter(Context context, List<RecommendEntity> recommendEntities) {
@@ -54,6 +66,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         vh.tvIntroduce.setText(recommendEntity.getIntroduce());
         vh.tvAgree.setText(recommendEntity.getAgree().toString());
         vh.tvComment.setText(recommendEntity.getComment().toString());
+        vh.recommendEntity = recommendEntity;
     }
 
     @Override
@@ -61,7 +74,15 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return recommendEntities.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    public List<RecommendEntity> getRecommendEntities() {
+        return recommendEntities;
+    }
+
+    public void setRecommendEntities(List<RecommendEntity> recommendEntities) {
+        this.recommendEntities = recommendEntities;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTitle;
         private TextView tvAuthor;
         private ImageView ivHeader;
@@ -70,6 +91,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         private TextView tvIntroduce;
         private TextView tvAgree;
         private TextView tvComment;
+        private RecommendEntity recommendEntity;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -82,6 +104,15 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvIntroduce = itemView.findViewById(R.id.tv_recommend_introduce);
             tvAgree = itemView.findViewById(R.id.tv_recommend_agree);
             tvComment = itemView.findViewById(R.id.tv_recommend_comment);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(recommendEntity);
+                }
+            });
         }
+    }
+    public interface OnItemClickListener {
+        void onItemClick(Serializable obj);
     }
 }
