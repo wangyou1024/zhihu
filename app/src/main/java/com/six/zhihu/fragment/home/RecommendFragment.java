@@ -78,7 +78,6 @@ public class RecommendFragment extends Fragment {
             @Override
             public void onLoadMore(RefreshLayout refreshlayout) {
                 // refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
-
                 getInfo(false);
             }
         });
@@ -130,7 +129,7 @@ public class RecommendFragment extends Fragment {
         if (refresh){
             pageNum = 1;
         } else{
-          pageNum++;
+            pageNum++;
         }
         for (int i = (pageNum-1)*limit; i < pageNum*limit; i++){
             RecommendEntity recommendEntity = new RecommendEntity();

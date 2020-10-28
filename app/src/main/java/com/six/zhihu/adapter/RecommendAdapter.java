@@ -2,10 +2,13 @@ package com.six.zhihu.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,14 +25,6 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private Context mContext;
     private List<RecommendEntity> recommendEntities;
     private OnItemClickListener onItemClickListener;
-
-    public OnItemClickListener getOnItemClickListener() {
-        return onItemClickListener;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
 
     public RecommendAdapter(Context context) {
         this.mContext = context;
@@ -67,6 +62,46 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         vh.tvAgree.setText(recommendEntity.getAgree().toString());
         vh.tvComment.setText(recommendEntity.getComment().toString());
         vh.recommendEntity = recommendEntity;
+        vh.popupMenu.setOnClickListener(bindOnClickListener(position));
+    }
+
+    public View.OnClickListener bindOnClickListener(final int position){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(mContext,view);
+                popupMenu.getMenuInflater().inflate(R.menu.item_recommend_menu,popupMenu.getMenu());
+
+                //弹出式菜单的菜单项点击事件
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.block_program:
+                                Toast.makeText(mContext, recommendEntities.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.block_key_word:
+                                Toast.makeText(mContext, "关键词："+recommendEntities.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.report:
+                                Toast.makeText(mContext, "举报："+recommendEntities.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        return false;
+                    }
+                });
+
+                //弹出式菜单的菜单的关闭事件
+                popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+                    @Override
+                    public void onDismiss(PopupMenu menu) {
+//                        Toast.makeText(mContext, "menu close.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                popupMenu.show();
+            }
+        };
     }
 
     @Override
@@ -77,9 +112,17 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public List<RecommendEntity> getRecommendEntities() {
         return recommendEntities;
     }
-
+    
     public void setRecommendEntities(List<RecommendEntity> recommendEntities) {
         this.recommendEntities = recommendEntities;
+    }
+
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -92,7 +135,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         private TextView tvAgree;
         private TextView tvComment;
         private RecommendEntity recommendEntity;
-
+        private TextView popupMenu;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,8 +153,10 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     onItemClickListener.onItemClick(recommendEntity);
                 }
             });
+            popupMenu = itemView.findViewById(R.id.tv_recommend_more_action);
         }
     }
+
     public interface OnItemClickListener {
         void onItemClick(Serializable obj);
     }

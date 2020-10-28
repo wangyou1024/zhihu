@@ -128,10 +128,12 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_recommend_more_action"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/three"
-            android:textSize="@dimen/text_three"
+            android:textSize="@dimen/text_first"
+            android:textStyle="bold"
             android:text="..." />
     </LinearLayout>
 </LinearLayout>
