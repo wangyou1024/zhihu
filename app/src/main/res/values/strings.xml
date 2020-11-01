@@ -4,4 +4,6 @@
     <string name="block_problem">屏蔽这个问题</string>
     <string name="block_key_word">设置屏蔽关键词</string>
     <string name="report">举报</string>
+    <string name="no_more_hot_top">没有更多了，去领域榜单看看吧</string>
+    <string name="about_hot_top">关于热榜</string>
 </resources>
