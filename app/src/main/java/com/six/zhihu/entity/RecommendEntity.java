@@ -8,7 +8,7 @@ public class RecommendEntity implements Serializable {
     private String concern;
     private Integer header;
     private Integer image;
-    private String Introduce;
+    private String introduce;
     private Integer agree;
     private Integer comment;
 
@@ -21,7 +21,7 @@ public class RecommendEntity implements Serializable {
         this.concern = concern;
         this.header = header;
         this.image = image;
-        Introduce = introduce;
+        this.introduce = introduce;
         this.agree = agree;
         this.comment = comment;
     }
@@ -59,11 +59,11 @@ public class RecommendEntity implements Serializable {
     }
 
     public String getIntroduce() {
-        return Introduce;
+        return introduce;
     }
 
     public void setIntroduce(String introduce) {
-        Introduce = introduce;
+        this.introduce = introduce;
     }
 
     public Integer getAgree() {

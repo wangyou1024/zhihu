@@ -1,6 +1,7 @@
 package com.six.zhihu.fragment.home;
 
-import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,21 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.scwang.smart.refresh.footer.BallPulseFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
-import com.six.zhihu.activity.RecommendActivity;
 import com.six.zhihu.adapter.HotTopAdapter;
 import com.six.zhihu.adapter.RecommendAdapter;
+import com.six.zhihu.dao.DBOpenHelper;
 import com.six.zhihu.entity.HotTopEntity;
-import com.six.zhihu.entity.RecommendEntity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,15 +62,14 @@ public class HotTopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        NormalLog.log(this.getClass(),2,"onCreateView",0);
         View view = inflater.inflate(R.layout.fragment_hot_top, container, false);
         refreshLayout = view.findViewById(R.id.hot_top_refreshLayout);
         this.refreshLayout.setRefreshHeader(new MaterialHeader(getContext()));
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                // refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                getInfo();
-            }
+        refreshLayout.setOnRefreshListener(refreshLayout1 -> {
+            // refreshLayout1.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            getInfo();
+            Toast.makeText(getActivity(), "刷新成功",Toast.LENGTH_SHORT).show();
         });
 
         recyclerView = view.findViewById(R.id.hot_top_recyclerView);
@@ -102,36 +99,48 @@ public class HotTopFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
         hotTopAdapter = new HotTopAdapter(getActivity());
-        hotTopAdapter.setOnItemClickListener(new RecommendAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Serializable obj) {
-                HotTopEntity hotTopEntity = (HotTopEntity) obj;
-                Toast.makeText(getActivity(), hotTopEntity.getTitle(),Toast.LENGTH_SHORT).show();
+        hotTopAdapter.setOnItemClickListener(obj -> {
+            HotTopEntity hotTopEntity = (HotTopEntity) obj;
+            Toast.makeText(getActivity(), hotTopEntity.getTitle(),Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent();
 //                intent.setClass(getActivity(), RecommendActivity.class);
 //                intent.putExtra("recommendEntity", hotTopEntity);
 //                startActivity(intent);
-            }
         });
         getInfo();
         recyclerView.setAdapter(hotTopAdapter);
+        NormalLog.log(this.getClass(),2,"onCreateView",1);
         return view;
     }
 
     public void getInfo(){
+        NormalLog.log(this.getClass(),2,"getInfo",0);
         ArrayList<HotTopEntity> hotTopEntities = new ArrayList<>();
-        for (int i = 0; i < 50; i++){
-            HotTopEntity hotTopEntity = new HotTopEntity();
-            hotTopEntity.setGrade(i+1);
-            hotTopEntity.setTitle("如何看待越来越多年轻人追捧[摸鱼哲学]，拒绝努力的年轻人真比老一辈活得更通透吗？");
-            hotTopEntity.setImage(R.mipmap.recommond_image);
-            hotTopEntity.setHot("2304万热度");
+        DBOpenHelper dbOpenHelper = new DBOpenHelper(getActivity());
+        SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from hottop", null);
+        while (cursor.moveToNext()){
+            Integer grade = cursor.getInt(cursor.getColumnIndex("grade"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            Integer image = cursor.getInt(cursor.getColumnIndex("image"));
+            String hot = cursor.getString(cursor.getColumnIndex("hot"));
+            HotTopEntity hotTopEntity = new HotTopEntity(grade, title, hot, image);
             hotTopEntities.add(hotTopEntity);
         }
+        cursor.close();
+        db.close();
+//        for (int i = 0; i < 50; i++){
+//            HotTopEntity hotTopEntity = new HotTopEntity();
+//            hotTopEntity.setGrade(i+1);
+//            hotTopEntity.setTitle("如何看待越来越多年轻人追捧[摸鱼哲学]，拒绝努力的年轻人真比老一辈活得更通透吗？");
+//            hotTopEntity.setImage(R.mipmap.recommond_image);
+//            hotTopEntity.setHot("2304万热度");
+//            hotTopEntities.add(hotTopEntity);
+//        }
         hotTopAdapter.setHotTopEntities(hotTopEntities);
         refreshLayout.finishRefresh(true);
         // 重置数据
         hotTopAdapter.notifyDataSetChanged();
-        Log.i("hotTopFragment after",hotTopAdapter.getHotTopEntities().size()+"");
+        NormalLog.log(this.getClass(),2,"getInfo",1);
     }
 }

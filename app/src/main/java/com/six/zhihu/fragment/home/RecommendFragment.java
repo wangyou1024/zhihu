@@ -1,6 +1,8 @@
 package com.six.zhihu.fragment.home;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.scwang.smart.refresh.footer.BallPulseFooter;
@@ -19,9 +20,11 @@ import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.activity.RecommendActivity;
 import com.six.zhihu.adapter.RecommendAdapter;
+import com.six.zhihu.dao.DBOpenHelper;
 import com.six.zhihu.entity.RecommendEntity;
 
 import java.io.Serializable;
@@ -63,23 +66,18 @@ public class RecommendFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        NormalLog.log(this.getClass(),2,"onCreateView",0);
         View view = inflater.inflate(R.layout.fragment_recommond, container, false);
         refreshLayout = view.findViewById(R.id.refreshLayout);
         this.refreshLayout.setRefreshHeader(new MaterialHeader(getContext()));
         this.refreshLayout.setRefreshFooter(new BallPulseFooter(getContext()));
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                // refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                getInfo(true);
-            }
+        refreshLayout.setOnRefreshListener(refreshLayout1 -> {
+            // refreshLayout1.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            getInfo(true);
         });
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshlayout) {
-                // refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
-                getInfo(false);
-            }
+        refreshLayout.setOnLoadMoreListener(refreshLayout1 -> {
+            // refreshLayout1.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            getInfo(false);
         });
 
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -108,43 +106,49 @@ public class RecommendFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recommendAdapter = new RecommendAdapter(getActivity());
-        recommendAdapter.setOnItemClickListener(new RecommendAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Serializable obj) {
-                RecommendEntity recommendEntity = (RecommendEntity) obj;
-                Toast.makeText(getActivity(), recommendEntity.getTitle(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), RecommendActivity.class);
-                intent.putExtra("recommendEntity", recommendEntity);
-                startActivity(intent);
-            }
+        recommendAdapter.setOnItemClickListener(obj -> {
+            RecommendEntity recommendEntity = (RecommendEntity) obj;
+            Toast.makeText(getActivity(), recommendEntity.getTitle(),Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), RecommendActivity.class);
+            intent.putExtra("recommendEntity", recommendEntity);
+            startActivity(intent);
         });
         getInfo(true);
         recyclerView.setAdapter(recommendAdapter);
+        NormalLog.log(this.getClass(),2,"onCreateView",1);
+
         return view;
     }
 
     public void getInfo(boolean refresh){
-        List<RecommendEntity> recommendEntities = new ArrayList<>();
+        NormalLog.log(this.getClass(),2,"getInfo",0);
         if (refresh){
             pageNum = 1;
         } else{
             pageNum++;
         }
-        for (int i = (pageNum-1)*limit; i < pageNum*limit; i++){
-            RecommendEntity recommendEntity = new RecommendEntity();
-            recommendEntity.setTitle(i+"有哪些值得大学生收藏的网站？");
-            recommendEntity.setHeader(R.drawable.shape_search);
-            if (i%2 == 0) {
-                recommendEntity.setImage(R.mipmap.recommond_image);
+        List<RecommendEntity> recommendEntities = new ArrayList<>();
+        DBOpenHelper dbOpenHelper = new DBOpenHelper(getActivity());
+        SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from recommend limit ? offset ?", new String[]{String.valueOf(limit), String.valueOf((pageNum - 1) * limit)});
+        while (cursor.moveToNext()){
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String author = cursor.getString(cursor.getColumnIndex("author"));
+            String concern = cursor.getString(cursor.getColumnIndex("concern"));
+            Integer header = cursor.getInt(cursor.getColumnIndex("header"));
+            Integer image = cursor.getInt(cursor.getColumnIndex("image"));
+            if (image == 0){
+                image = null;
             }
-            recommendEntity.setAuthor("见长");
-            recommendEntity.setConcern("超过13.8万的用户关注了TA");
-            recommendEntity.setIntroduce("大学时期时间相对充裕，在认真学习本专业的同时，学习更多的技能也是十分必要,学习更多的技能也是十分必要");
-            recommendEntity.setAgree(110000);
-            recommendEntity.setComment(104);
+            String introduce = cursor.getString(cursor.getColumnIndex("introduce"));
+            Integer agree = cursor.getInt(cursor.getColumnIndex("agree"));
+            Integer comment = cursor.getInt(cursor.getColumnIndex("comment"));
+            RecommendEntity recommendEntity = new RecommendEntity(title, author, concern, header, image, introduce, agree, comment);
             recommendEntities.add(recommendEntity);
         }
+        cursor.close();
+        db.close();
         if (refresh){
             recommendAdapter.setRecommendEntities(recommendEntities);
             refreshLayout.finishRefresh(true);
@@ -156,5 +160,7 @@ public class RecommendFragment extends Fragment {
             // 重置数据
             recommendAdapter.notifyDataSetChanged();
         }
+        NormalLog.log(this.getClass(),2,"getInfo",1);
     }
+
 }

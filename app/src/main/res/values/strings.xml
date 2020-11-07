@@ -6,4 +6,6 @@
     <string name="report">举报</string>
     <string name="no_more_hot_top">没有更多了，去领域榜单看看吧</string>
     <string name="about_hot_top">关于热榜</string>
+    <string name="dynamic_content">创建二维码安装qrcodejs2（注意：安装的是qrcodejs2，不要安装qrcode，否则会报错）npm install qrcodejs2
+--save页面中引入《el-dialog:visible.sync="enadbojowefwfweiwjelksndfiwjkjsldjfow"</string>
 </resources>

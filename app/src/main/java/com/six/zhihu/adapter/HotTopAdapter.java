@@ -1,6 +1,5 @@
 package com.six.zhihu.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.entity.HotTopEntity;
 
@@ -19,18 +19,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotTopAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HotTopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private List<HotTopEntity> hotTopEntities;
-    private RecommendAdapter.OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public HotTopAdapter(Context context) {
+        NormalLog.log(this.getClass(),2,"HotTopAdapter",0);
         this.mContext = context;
         this.hotTopEntities = new ArrayList<>();
     }
 
     public HotTopAdapter(Context mContext, List<HotTopEntity> hotTopEntities) {
+        NormalLog.log(this.getClass(),2,"HotTopAdapter",0);
         this.mContext = mContext;
         this.hotTopEntities = hotTopEntities;
     }
@@ -38,27 +40,42 @@ public class HotTopAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(this.mContext).inflate(R.layout.item_hot_top_layout,parent, false);
+        NormalLog.log(this.getClass(),2,"HotTopAdapter",0,viewType);
+        View view = LayoutInflater.from(this.mContext).inflate(R.layout.item_hot_top_layout, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+        NormalLog.log(this.getClass(),2,"HotTopAdapter",2,viewHolder);
         return viewHolder;
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.i("adapter", "onBindViewHolder: ");
+        NormalLog.log(this.getClass(),2,"onBindViewHolder",0,position);
         ViewHolder vh = (ViewHolder) holder;
         vh.tvGrade.setText(hotTopEntities.get(position).getGrade().toString());
         vh.tvTitle.setText(hotTopEntities.get(position).getTitle());
         vh.tvHot.setText(hotTopEntities.get(position).getHot());
         vh.imageView.setImageResource(hotTopEntities.get(position).getImage());
-        switch (position){
-            case 0:vh.tvGrade.setBackgroundResource(R.color.hot_top_first);break;
-            case 1:vh.tvGrade.setBackgroundResource(R.color.hot_top_second);break;
-            case 2:vh.tvGrade.setBackgroundResource(R.color.hot_top_third);break;
-            default:vh.tvGrade.setBackgroundResource(R.color.white);vh.tvGrade.setTextColor(R.color.four);break;
+        switch (position) {
+            case 0:
+                vh.tvGrade.setBackgroundResource(R.color.hot_top_first);
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
+                break;
+            case 1:
+                vh.tvGrade.setBackgroundResource(R.color.hot_top_second);
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
+                break;
+            case 2:
+                vh.tvGrade.setBackgroundResource(R.color.hot_top_third);
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
+                break;
+            default:
+                vh.tvGrade.setBackgroundResource(R.color.white);
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.four));
+                break;
         }
         vh.hotTopEntity = hotTopEntities.get(position);
+        NormalLog.log(this.getClass(),2,"onBindViewHolder",1);
+
     }
 
     @Override
@@ -66,11 +83,11 @@ public class HotTopAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return hotTopEntities.size();
     }
 
-    public RecommendAdapter.OnItemClickListener getOnItemClickListener() {
+    public OnItemClickListener getOnItemClickListener() {
         return onItemClickListener;
     }
 
-    public void setOnItemClickListener(RecommendAdapter.OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -82,7 +99,7 @@ public class HotTopAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.hotTopEntities = hotTopEntities;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvGrade;
         private TextView tvTitle;
@@ -92,15 +109,13 @@ public class HotTopAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            NormalLog.log(this.getClass(),2,"ViewHolder",0);
             tvGrade = itemView.findViewById(R.id.tv_hot_top_grade);
             tvTitle = itemView.findViewById(R.id.tv_hot_top_title);
             tvHot = itemView.findViewById(R.id.tv_hot_top_hot);
             imageView = itemView.findViewById(R.id.iv_hot_top_image);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClickListener.onItemClick(hotTopEntity);
-                }
+            itemView.setOnClickListener(view -> {
+                onItemClickListener.onItemClick(hotTopEntity);
             });
         }
     }
