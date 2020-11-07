@@ -17,8 +17,7 @@ import android.widget.Toast;
 import com.scwang.smart.refresh.footer.BallPulseFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
 import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.adapter.ConcernPersonAdapter;
@@ -108,16 +107,13 @@ public class ConcernFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dynamicRecyclerView.setLayoutManager(linearLayoutManager);
         dynamicAdapter = new DynamicAdapter(getActivity());
-        dynamicAdapter.setOnItemClickListener(new DynamicAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Serializable obj) {
-                DynamicEntity dynamicEntity = (DynamicEntity) obj;
-                Toast.makeText(getActivity(), dynamicEntity.getTitle(),Toast.LENGTH_SHORT).show();
+        dynamicAdapter.setOnItemClickListener(obj -> {
+            DynamicEntity dynamicEntity = (DynamicEntity) obj;
+            Toast.makeText(getActivity(), dynamicEntity.getTitle(),Toast.LENGTH_SHORT).show();
 /*                Intent intent = new Intent();
-                intent.setClass(getActivity(), RecommendActivity.class);
-                intent.putExtra("recommendEntity", dynamicEntity);
-                startActivity(intent);*/
-            }
+            intent.setClass(getActivity(), RecommendActivity.class);
+            intent.putExtra("recommendEntity", dynamicEntity);
+            startActivity(intent);*/
         });
         getDynamic(true);
         dynamicRecyclerView.setAdapter(dynamicAdapter);
@@ -127,12 +123,9 @@ public class ConcernFragment extends Fragment {
         personLinearLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
         personRecyclerView.setLayoutManager(personLinearLayout);
         concernPersonAdapter = new ConcernPersonAdapter(getContext());
-        concernPersonAdapter.setOnConcernPersonClickListener(new ConcernPersonAdapter.OnConcernPersonClickListener() {
-            @Override
-            public void onItemClick(Serializable obj) {
-                ConcernPerson concernPerson = (ConcernPerson) obj;
-                Toast.makeText(getActivity(), concernPerson.getName(),Toast.LENGTH_SHORT).show();
-            }
+        concernPersonAdapter.setOnConcernPersonClickListener(obj -> {
+            ConcernPerson concernPerson = (ConcernPerson) obj;
+            Toast.makeText(getActivity(), concernPerson.getName(),Toast.LENGTH_SHORT).show();
         });
         getConcernPerson();
         personRecyclerView.setAdapter(concernPersonAdapter);
@@ -164,17 +157,6 @@ public class ConcernFragment extends Fragment {
         }
         cursor.close();
         db.close();
-        /*for (int i = (pageNum-1)*limit; i < pageNum*limit; i++){
-            DynamicEntity dynamicEntity = new DynamicEntity();
-            dynamicEntity.setAuthorHeader(R.mipmap.header);
-            dynamicEntity.setAuthorName("张大人");
-            dynamicEntity.setTitle("Dubbo分布式架构搭建教育PC站-微信支付");
-            dynamicEntity.setContent("创建二维码安装qrcodejs2（注意：安装的是qrcodejs2，不要安装qrcode，否则会报错）npm install qrcodejs2\n" +
-                    "--save页面中引入《el-dialog:visible.sync=\"enadbojowefwfweiwjelksndfiwjkjsldjfow\"");
-            dynamicEntity.setAgree(10);
-            dynamicEntity.setComment(14);
-            dynamicEntities.add(dynamicEntity);
-        }*/
         if (refresh){
             dynamicAdapter.setDynamicEntities(dynamicEntities);
             refreshLayout.finishRefresh(true);
@@ -204,12 +186,6 @@ public class ConcernFragment extends Fragment {
         }
         cursor.close();
         db.close();
-/*        for (int i = 0; i < 10; i++){
-            ConcernPerson concernPerson = new ConcernPerson();
-            concernPerson.setImageHeader(R.mipmap.header);
-            concernPerson.setName("你好");
-            concernPeople.add(concernPerson);
-        }*/
         concernPersonAdapter.setConcernPeople(concernPeople);
         dynamicAdapter.notifyDataSetChanged();
         NormalLog.log(this.getClass(),2,"getConcernPerson",1);

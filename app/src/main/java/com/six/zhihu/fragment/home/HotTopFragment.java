@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +17,12 @@ import android.widget.Toast;
 
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.adapter.HotTopAdapter;
-import com.six.zhihu.adapter.RecommendAdapter;
 import com.six.zhihu.dao.DBOpenHelper;
 import com.six.zhihu.entity.HotTopEntity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -102,10 +98,10 @@ public class HotTopFragment extends Fragment {
         hotTopAdapter.setOnItemClickListener(obj -> {
             HotTopEntity hotTopEntity = (HotTopEntity) obj;
             Toast.makeText(getActivity(), hotTopEntity.getTitle(),Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent();
-//                intent.setClass(getActivity(), RecommendActivity.class);
-//                intent.putExtra("recommendEntity", hotTopEntity);
-//                startActivity(intent);
+/*                Intent intent = new Intent();
+                intent.setClass(getActivity(), RecommendActivity.class);
+                intent.putExtra("recommendEntity", hotTopEntity);
+                startActivity(intent);*/
         });
         getInfo();
         recyclerView.setAdapter(hotTopAdapter);
@@ -129,14 +125,6 @@ public class HotTopFragment extends Fragment {
         }
         cursor.close();
         db.close();
-//        for (int i = 0; i < 50; i++){
-//            HotTopEntity hotTopEntity = new HotTopEntity();
-//            hotTopEntity.setGrade(i+1);
-//            hotTopEntity.setTitle("如何看待越来越多年轻人追捧[摸鱼哲学]，拒绝努力的年轻人真比老一辈活得更通透吗？");
-//            hotTopEntity.setImage(R.mipmap.recommond_image);
-//            hotTopEntity.setHot("2304万热度");
-//            hotTopEntities.add(hotTopEntity);
-//        }
         hotTopAdapter.setHotTopEntities(hotTopEntities);
         refreshLayout.finishRefresh(true);
         // 重置数据

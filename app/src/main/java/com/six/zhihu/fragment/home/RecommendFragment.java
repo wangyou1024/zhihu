@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.scwang.smart.refresh.footer.BallPulseFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.activity.RecommendActivity;
@@ -27,7 +25,6 @@ import com.six.zhihu.adapter.RecommendAdapter;
 import com.six.zhihu.dao.DBOpenHelper;
 import com.six.zhihu.entity.RecommendEntity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

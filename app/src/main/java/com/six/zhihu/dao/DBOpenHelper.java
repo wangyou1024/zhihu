@@ -5,15 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
-import com.six.zhihu.entity.ConcernPerson;
-import com.six.zhihu.entity.DynamicEntity;
-import com.six.zhihu.entity.HotTopEntity;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
     public DBOpenHelper(@Nullable Context context) {
