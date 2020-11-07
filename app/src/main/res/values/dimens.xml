@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--    常规字体大小-->
     <dimen name="text_first">17sp</dimen>
     <dimen name="text_second">15sp</dimen>
     <dimen name="text_three">14sp</dimen>

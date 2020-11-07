@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.six.zhihu.NormalLog;
+
 import java.util.ArrayList;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
@@ -12,6 +14,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> mFragments;
     public MainPagerAdapter(FragmentManager fm, String[] mTitles, ArrayList<Fragment> fragments) {
         super(fm);
+        NormalLog.log(this.getClass(),2,"MainPagerAdapter",0);
         this.mTitles = mTitles;
         this.mFragments = fragments;
     }

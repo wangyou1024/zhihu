@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/block_program"
+        android:title="@string/block_problem" />
+    <item android:id="@+id/block_key_word"
+        android:title="@string/block_key_word"/>
+    <item android:id="@+id/report"
+        android:title="@string/report"/>
+</menu>

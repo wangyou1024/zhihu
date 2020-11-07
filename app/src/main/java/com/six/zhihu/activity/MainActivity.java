@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.six.zhihu.NormalLog;
 import com.six.zhihu.R;
 import com.six.zhihu.adapter.MainPagerAdapter;
 import com.six.zhihu.entity.TabEntity;
@@ -36,22 +37,28 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        NormalLog.log(this.getClass(),2,"onCreate",0);
         super.onCreate(savedInstanceState);
+        NormalLog.log(this.getClass(),2,"onCreate",1);
     }
 
     @Override
     protected int initLayout(){
+        NormalLog.log(this.getClass(),2,"initLayout",2,R.layout.activity_main);
         return R.layout.activity_main;
     }
 
     @Override
     protected void initView(){
+        NormalLog.log(this.getClass(),2,"initView",0);
         viewPager = findViewById(R.id.vp_main);
         commonTabLayout = findViewById(R.id.commonTabLayout);
+        NormalLog.log(this.getClass(),2,"initView",1);
     }
 
     @Override
     protected void initData(){
+        NormalLog.log(this.getClass(),2,"initData",0);
         mFragment.add(HomeFragment.newInstance());
         mFragment.add(MemberFragment.newInstance());
         mFragment.add(FoundFragment.newInstance());
@@ -89,6 +96,7 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+        NormalLog.log(this.getClass(),2,"initData",1);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.six.zhihu.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,19 +58,19 @@ public class HotTopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch (position) {
             case 0:
                 vh.tvGrade.setBackgroundResource(R.color.hot_top_first);
-                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white,null));
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
                 break;
             case 1:
                 vh.tvGrade.setBackgroundResource(R.color.hot_top_second);
-                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white,null));
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
                 break;
             case 2:
                 vh.tvGrade.setBackgroundResource(R.color.hot_top_third);
-                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white,null));
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.white));
                 break;
             default:
                 vh.tvGrade.setBackgroundResource(R.color.white);
-                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.four,null));
+                vh.tvGrade.setTextColor(mContext.getResources().getColor(R.color.four));
                 break;
         }
         vh.hotTopEntity = hotTopEntities.get(position);
@@ -113,7 +114,9 @@ public class HotTopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             tvTitle = itemView.findViewById(R.id.tv_hot_top_title);
             tvHot = itemView.findViewById(R.id.tv_hot_top_hot);
             imageView = itemView.findViewById(R.id.iv_hot_top_image);
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClick(hotTopEntity));
+            itemView.setOnClickListener(view -> {
+                onItemClickListener.onItemClick(hotTopEntity);
+            });
         }
     }
 

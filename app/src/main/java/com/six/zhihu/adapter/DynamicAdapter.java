@@ -102,7 +102,9 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             content = itemView.findViewById(R.id.dynamic_content);
             agree = itemView.findViewById(R.id.dynamic_agree);
             comment = itemView.findViewById(R.id.dynamic_comment);
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClick(dynamicEntity));
+            itemView.setOnClickListener(view -> {
+                onItemClickListener.onItemClick(dynamicEntity);
+            });
         }
     }
 

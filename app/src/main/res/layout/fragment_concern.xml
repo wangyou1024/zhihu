@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smart.refresh.layout.SmartRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refreshLayout"
@@ -30,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="最近常访问"
@@ -41,7 +40,7 @@
                 android:id="@+id/person_recyclerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/background" />
 

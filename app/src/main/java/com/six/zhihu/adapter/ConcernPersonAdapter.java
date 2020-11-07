@@ -92,7 +92,9 @@ public class ConcernPersonAdapter extends RecyclerView.Adapter<RecyclerView.View
             NormalLog.log(this.getClass(),2,"ViewHolder",0);
             imageHeader = itemView.findViewById(R.id.iv_concern_header);
             name = itemView.findViewById(R.id.tv_concern_name);
-            itemView.setOnClickListener(view -> onConcernPersonClickListener.onItemClick(concernPerson));
+            itemView.setOnClickListener(view -> {
+                onConcernPersonClickListener.onItemClick(concernPerson);
+            });
             NormalLog.log(this.getClass(),2,"ViewHolder",1);
         }
     }
