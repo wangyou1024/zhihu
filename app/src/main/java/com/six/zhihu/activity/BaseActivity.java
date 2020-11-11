@@ -12,7 +12,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(initLayout());
         initView();
         initData();
-        //dadadadadda
+        //dadada
     }
 
     protected abstract int initLayout();
