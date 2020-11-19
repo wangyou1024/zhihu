@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.home.CircleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment profile -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
