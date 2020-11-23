@@ -2,7 +2,11 @@ package com.six.zhihu;
 
 import android.util.Log;
 
-public class NormalLog {
+public class
+
+
+
+NormalLog {
     public static void log(Class clazz, Integer level, String method, Integer type, Object ...args){
         String log = method + " ";
         switch (type){

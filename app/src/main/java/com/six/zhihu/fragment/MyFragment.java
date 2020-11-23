@@ -39,6 +39,7 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the profile for this fragment
+//        edit_my = (TextView) findViewById(R.layout.profile);
         return inflater.inflate(R.layout.fragment_my, container, false);
     }
 }

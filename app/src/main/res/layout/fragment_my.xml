@@ -157,6 +157,16 @@
                             android:textSize="@dimen/text_first" />
 
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="2dp"
+                            android:layout_height="40dp"
+                            android:background="#000000" />
+                    </RelativeLayout>
+
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -182,6 +192,15 @@
                             android:textSize="@dimen/text_first" />
 
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="2dp"
+                            android:layout_height="40dp"
+                            android:background="#000000" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -206,6 +225,15 @@
                             android:textColor="@color/three"
                             android:textSize="@dimen/text_first" />
 
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="2dp"
+                            android:layout_height="40dp"
+                            android:background="#000000" />
                     </RelativeLayout>
 
                     <RelativeLayout
