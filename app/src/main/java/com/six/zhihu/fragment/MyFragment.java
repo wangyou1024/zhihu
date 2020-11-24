@@ -1,5 +1,6 @@
 package com.six.zhihu.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.six.zhihu.R;
+import com.six.zhihu.activity.ProfileActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +19,7 @@ import com.six.zhihu.R;
  * create_center an instance of this fragment.
  */
 public class MyFragment extends Fragment {
-    TextView edit_my ;
+    TextView profile;
     
     public MyFragment() {
         // Required empty public constructor
@@ -40,6 +42,12 @@ public class MyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the profile for this fragment
 //        edit_my = (TextView) findViewById(R.layout.profile);
-        return inflater.inflate(R.layout.fragment_my, container, false);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
+        profile = view.findViewById(R.id.profile);
+        profile.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), ProfileActivity.class);
+            startActivity(intent);
+        });
+        return view;
     }
 }

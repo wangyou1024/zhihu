@@ -28,11 +28,16 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "authorHeader integer, authorName text, updateTime text, title text, content text,agree integer,comment integer)");
         sqLiteDatabase.execSQL("create table if not exists concern(id integer primary key autoincrement," +
                 "imageHeader integer,name text)");
+        sqLiteDatabase.execSQL("create table if not exists user(id integer primary key autoincrement," +
+                "imageHeader integer,name text,detail text,sex text, birth text,hometown text,work text)");
         createRecommend(sqLiteDatabase);
         createHotTop(sqLiteDatabase);
         createDynamic(sqLiteDatabase);
         createConcernPerson(sqLiteDatabase);
+        createUser(sqLiteDatabase);
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
@@ -126,5 +131,23 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     }
 
+    private void createUser(SQLiteDatabase sqLiteDatabase) {
+        NormalLog.log(this.getClass(),2,"createUser",0);
+        if (count("user",sqLiteDatabase) > 0){
+            NormalLog.log(this.getClass(),2,"createUser",1,0);
+            return;
+        }
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("imageHeader",R.mipmap.header);
+            contentValues.put("name","王霸之气");
+            contentValues.put("detail","大学生喜欢睡觉");
+            contentValues.put("sex","男");
+            contentValues.put("birth","12月11");
+            contentValues.put("hometown","四川省德阳市");
+            contentValues.put("work","混吃等死");
+            sqLiteDatabase.insert("user",null,contentValues);
+        NormalLog.log(this.getClass(),2,"createUser",1);
+
+    }
 
 }
