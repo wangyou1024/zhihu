@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">zhihu</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="creation_definition">创作中心是为创作者提供创作管理、数据分析、
+        创作助力及内容创收等权益的平台，帮助优质内容创作者获得更多的认可和鼓励，
+        也让创作者有机会得到更多真金白银的收益。</string>
 </resources>
