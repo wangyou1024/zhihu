@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    常规字体大小-->
+    <dimen name="text_first">17sp</dimen>
+    <dimen name="text_second">15sp</dimen>
+    <dimen name="text_three">14sp</dimen>
+    <dimen name="text_four">13sp</dimen>
+    <dimen name="text_five">12sp</dimen>
+    <dimen name="text_sex">10sp</dimen>
+    <dimen name="content_blue_size">20sp</dimen>
+    <dimen name="content_title">24sp</dimen>
+    <dimen name="title">26sp</dimen>
+</resources>
