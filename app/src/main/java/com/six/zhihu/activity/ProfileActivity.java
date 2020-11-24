@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,11 +25,14 @@ public class ProfileActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private RecommendAdapter recommendAdapter;
     private ImageView back2My;
+    private TextView textView;
+    private DBOpenHelper helper;
 
 
     @Override
     protected int initLayout() {
         NormalLog.log(this.getClass(), 2, "initLayout", 2, R.layout.profile);
+        helper = new DBOpenHelper(this);
         return R.layout.profile;
     }
 
@@ -49,6 +53,12 @@ public class ProfileActivity extends BaseActivity {
         }));
         recyclerView = findViewById(R.id.profile_recyclerView);
 
+        SQLiteDatabase db;
+        db = helper.getWritableDatabase();
+        Cursor cursor = db.query("user",null,null,null,null,null,null);
+        cursor.moveToFirst();
+        textView = findViewById(R.id.textView);
+        textView.setText(cursor.getString(2));
         NormalLog.log(this.getClass(), 2, "initView", 1);
 
     }
