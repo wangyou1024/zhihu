@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.MyActivity"></activity>
+        <activity android:name=".activity.EditProfileActivity"/>
+        <activity android:name=".activity.ProfileActivity"/>
         <activity
             android:name=".activity.RecommendActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

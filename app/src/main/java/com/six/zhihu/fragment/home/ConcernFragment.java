@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ConcernFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * create_center an instance of this fragment.
  */
 public class ConcernFragment extends Fragment {
 
@@ -66,7 +66,7 @@ public class ConcernFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the profile for this fragment
         NormalLog.log(this.getClass(),2,"onCreateView",0);
         View view= inflater.inflate(R.layout.fragment_concern, container, false);
         refreshLayout = view.findViewById(R.id.refreshLayout);

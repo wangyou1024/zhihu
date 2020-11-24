@@ -29,7 +29,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * create_center an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
 
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the profile for this fragment
         NormalLog.log(this.getClass(),2,"onCreateView",0);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = v.findViewById(R.id.vp_home);

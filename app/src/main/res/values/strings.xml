@@ -10,4 +10,13 @@
 --save页面中引入《el-dialog:visible.sync="enadbojowefwfweiwjelksndfiwjkjsldjfow"</string>
     <string name="message_Zhihu_daily">知乎日报</string>
     <string name="message_time_1">关注了问题 · 11-19</string>
+    <string name="title_activity_shabi">shabi</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_MyActivity" />
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>

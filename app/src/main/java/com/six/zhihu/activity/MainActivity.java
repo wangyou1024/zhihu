@@ -16,6 +16,7 @@ import com.six.zhihu.fragment.FoundFragment;
 import com.six.zhihu.fragment.HomeFragment;
 import com.six.zhihu.fragment.MemberFragment;
 import com.six.zhihu.fragment.MessageFragment;
+import com.six.zhihu.fragment.MyFragment;
 
 import java.util.ArrayList;
 
@@ -63,7 +64,7 @@ public class MainActivity extends BaseActivity {
         mFragment.add(MemberFragment.newInstance());
         mFragment.add(FoundFragment.newInstance());
         mFragment.add(MessageFragment.newInstance());
-        mFragment.add(MessageFragment.newInstance());
+        mFragment.add(MyFragment.newInstance());
         for (int i = 0; i < mTitle.length; i++){
             mTabEntities.add(new TabEntity(mTitle[i], mIconSelectIds[i],mIconUnSelectIds[i]));
         }
