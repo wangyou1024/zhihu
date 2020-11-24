@@ -56,7 +56,6 @@ public class ConcernPersonAdapter extends RecyclerView.Adapter<RecyclerView.View
         vh.name.setText(concernPerson.getName());
         vh.concernPerson = concernPerson;
         NormalLog.log(this.getClass(),2,"onBindViewHolder",1);
-
     }
 
     @Override
