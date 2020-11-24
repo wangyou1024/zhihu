@@ -13,6 +13,9 @@
         <activity android:name=".activity.content.ContentActivity">
         </activity>
         <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.MyActivity"></activity>
+        <activity android:name=".activity.EditProfileActivity"/>
+        <activity android:name=".activity.ProfileActivity"/>
         <activity
             android:name=".activity.RecommendActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

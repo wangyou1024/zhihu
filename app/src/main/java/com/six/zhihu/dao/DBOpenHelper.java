@@ -16,13 +16,13 @@ import com.six.zhihu.R;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
     public DBOpenHelper(@Nullable Context context) {
-        super(context, "zhihu.db", null, 3);
+        super(context, "zhihu.db", null, 2);
     }
 
     // 修改此方法后需要删除原来的数据库文件，关闭虚拟机，关闭app，重新启动，否则不会运行
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        NormalLog.log(this.getClass(), 2, "onCreate", 0);
+        NormalLog.log(this.getClass(),2,"onCreate",0);
         sqLiteDatabase.execSQL("create table if not exists recommend (id integer primary key autoincrement," +
                 "title text,author text, concern text,header integer,image integer,introduce text,agree integer,comment integer)");
         sqLiteDatabase.execSQL("create table if not exists hottop (id integer primary key autoincrement," +
@@ -35,12 +35,14 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table if not exists content(id integer primary key autoincrement," +
                 "title text, answer_num integer, nickname text, signature text," +
                 "content text, agree_num integer, love_num integer, comment_num integer, collection_num integer)");
+        sqLiteDatabase.execSQL("create table if not exists user(id integer primary key autoincrement," +
+                "imageHeader integer,name text,detail text,sex text, birth text,hometown text,work text)");
         createRecommend(sqLiteDatabase);
         createHotTop(sqLiteDatabase);
         createDynamic(sqLiteDatabase);
         createConcernPerson(sqLiteDatabase);
         createContent(sqLiteDatabase);
-
+        createUser(sqLiteDatabase);
     }
 
     @Override
@@ -48,8 +50,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    public int count(String name, SQLiteDatabase sqLiteDatabase) {
-        Cursor cursor = sqLiteDatabase.rawQuery("select count(*) count from " + name, null);
+    public int count(String name, SQLiteDatabase sqLiteDatabase){
+        Cursor cursor = sqLiteDatabase.rawQuery("select count(*) count from "+name,null);
         cursor.moveToNext();
         int count = cursor.getInt(cursor.getColumnIndex("count"));
         cursor.close();
@@ -168,5 +170,24 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
 
         Log.d("createContent", "初始化数据完成");
+    }
+
+    private void createUser(SQLiteDatabase sqLiteDatabase) {
+        NormalLog.log(this.getClass(),2,"createUser",0);
+        if (count("user",sqLiteDatabase) > 0){
+            NormalLog.log(this.getClass(),2,"createUser",1,0);
+            return;
+        }
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("imageHeader",R.mipmap.header);
+            contentValues.put("name","王霸之气");
+            contentValues.put("detail","大学生喜欢睡觉");
+            contentValues.put("sex","男");
+            contentValues.put("birth","12月11");
+            contentValues.put("hometown","四川省德阳市");
+            contentValues.put("work","混吃等死");
+            sqLiteDatabase.insert("user",null,contentValues);
+        NormalLog.log(this.getClass(),2,"createUser",1);
+
     }
 }

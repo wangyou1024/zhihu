@@ -33,6 +33,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  * Use the {@link RecommendFragment#newInstance} factory method to
  * create an instance of this fragment.
+ * create_center an instance of this fragment.
  */
 public class RecommendFragment extends Fragment {
 
@@ -63,7 +64,7 @@ public class RecommendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the profile for this fragment
         NormalLog.log(this.getClass(),2,"onCreateView",0);
         View view = inflater.inflate(R.layout.fragment_recommond, container, false);
         refreshLayout = view.findViewById(R.id.refreshLayout);
@@ -109,6 +110,7 @@ public class RecommendFragment extends Fragment {
             Toast.makeText(getActivity(), recommendEntity.getTitle(),Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getContext(), ContentActivity.class);
             intent.putExtra("id", (int) (1 + Math.random() * 20));
+            intent.putExtra("recommendEntity", recommendEntity);
             startActivity(intent);
         });
         getInfo(true);

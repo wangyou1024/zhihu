@@ -14,6 +14,7 @@ import com.six.zhihu.R;
  * A simple {@link Fragment} subclass.
  * Use the {@link FoundFragment#newInstance} factory method to
  * create an instance of this fragment.
+ * create_center an instance of this fragment.
  */
 public class FoundFragment extends Fragment {
 
