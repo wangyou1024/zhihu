@@ -8,4 +8,6 @@
     <string name="about_hot_top">关于热榜</string>
     <string name="dynamic_content">创建二维码安装qrcodejs2（注意：安装的是qrcodejs2，不要安装qrcode，否则会报错）npm install qrcodejs2
 --save页面中引入《el-dialog:visible.sync="enadbojowefwfweiwjelksndfiwjkjsldjfow"</string>
+    <string name="message_Zhihu_daily">知乎日报</string>
+    <string name="message_time_1">关注了问题 · 11-19</string>
 </resources>
