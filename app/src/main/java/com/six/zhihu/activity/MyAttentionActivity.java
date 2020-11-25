@@ -35,15 +35,9 @@ public class MyAttentionActivity extends BaseActivity {
     protected void initView() {
         viewPager2 = findViewById(R.id.myattention_viewpager);
         tabLayout = findViewById(R.id.myattention_tabLayout);
-        linearLayout = findViewById(R.id.user_one);
         ImageView imageView = findViewById(R.id.myattention_cancel);
 
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toUserinfo();
-            }
-        });
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +103,4 @@ public class MyAttentionActivity extends BaseActivity {
         }).attach();
     }
 
-    private void toUserinfo() {
-        Intent intent = new Intent(MyAttentionActivity.this, UserinfoActivity.class);
-        startActivity(intent);
-    }
 }
