@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MyAttentionActivity">
+
+<!--    页首-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp">
+
+        <ImageView
+            android:id="@+id/myattention_cancel"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/myattention_cancel"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="我关注的"
+            android:textSize="20sp"
+            android:textColor="#646464"/>
+    </LinearLayout>
+
+<!--    导航栏-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/myattention_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/myattention_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+<!--    内容-->
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ScrollView>
+</LinearLayout>
