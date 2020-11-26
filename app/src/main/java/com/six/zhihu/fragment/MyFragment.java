@@ -11,7 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.six.zhihu.R;
+
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.six.zhihu.activity.CreationActivity;
+import com.six.zhihu.activity.MyAttentionActivity;
 import com.six.zhihu.activity.ProfileActivity;
 import com.six.zhihu.dao.DBOpenHelper;
 /**
@@ -23,6 +28,8 @@ public class MyFragment extends Fragment {
     private TextView profile;
     private DBOpenHelper helper;
     private TextView my_name;
+    private RelativeLayout rlCreation;
+    private RelativeLayout rlConcern;
     
     public MyFragment() {
         // Required empty public constructor
@@ -54,7 +61,16 @@ public class MyFragment extends Fragment {
         cursor.moveToFirst();
         my_name = view.findViewById(R.id.my_name);
         my_name.setText(cursor.getString(2));
-
+        rlCreation = view.findViewById(R.id.rl_creation);
+        rlCreation.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CreationActivity.class);
+            startActivity(intent);
+        });
+        rlConcern = view.findViewById(R.id.rl_concern);
+        rlConcern.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), MyAttentionActivity.class);
+            startActivity(intent);
+        });
         profile = view.findViewById(R.id.profile);
         profile.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);

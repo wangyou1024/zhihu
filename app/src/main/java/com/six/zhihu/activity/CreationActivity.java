@@ -17,20 +17,14 @@ public class CreationActivity extends BaseActivity {
     @Override
     protected void initView() {
         imageView = findViewById(R.id.creation_cancel);
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                Log.d("CreationActivity", "结束我的创作页面");
-            }
+        imageView.setOnClickListener(view -> {
+            finish();
+            Log.d("CreationActivity", "结束我的创作页面");
         });
     }
 
     @Override
     protected void initData() {
-
     }
 
     @Override

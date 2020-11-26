@@ -134,6 +134,7 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/rl_creation"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -169,6 +170,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/rl_concern"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1">

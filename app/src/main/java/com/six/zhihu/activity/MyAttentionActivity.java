@@ -36,15 +36,7 @@ public class MyAttentionActivity extends BaseActivity {
         viewPager2 = findViewById(R.id.myattention_viewpager);
         tabLayout = findViewById(R.id.myattention_tabLayout);
         ImageView imageView = findViewById(R.id.myattention_cancel);
-
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        imageView.setOnClickListener(view -> finish());
     }
 
     @Override
