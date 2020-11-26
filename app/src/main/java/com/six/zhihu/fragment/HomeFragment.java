@@ -62,18 +62,18 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        NormalLog.log(this.getClass(),2,"onCreateView",0);
+        NormalLog.log(this.getClass(), 2, "onCreateView", 0);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = v.findViewById(R.id.vp_home);
         slidingTabLayout = v.findViewById(R.id.tl_home);
         etSearch = v.findViewById(R.id.et_search);
-        NormalLog.log(this.getClass(),2,"onCreateView",1);
+        NormalLog.log(this.getClass(), 2, "onCreateView", 1);
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        NormalLog.log(this.getClass(),2,"onViewCreated",0);
+        NormalLog.log(this.getClass(), 2, "onViewCreated", 0);
         super.onViewCreated(view, savedInstanceState);
         mFragment.add(ConcernFragment.newInstance());
         mFragment.add(RecommendFragment.newInstance());
@@ -82,12 +82,14 @@ public class HomeFragment extends Fragment {
         viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(new HomePagerAdapter(getFragmentManager(), mTitle, mFragment));
         slidingTabLayout.setViewPager(viewPager);
-        etSearch.setOnFocusChangeListener((var1, var2)->{
-            Intent intent = new Intent(getActivity(), SearchActivity.class);
-            startActivity(intent);
-            etSearch.clearFocus();
+        etSearch.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etSearch.clearFocus();
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
         });
-        NormalLog.log(this.getClass(),2,"onViewCreated",1);
+        NormalLog.log(this.getClass(), 2, "onViewCreated", 1);
 
     }
 }
