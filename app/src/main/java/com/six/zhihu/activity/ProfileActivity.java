@@ -41,8 +41,6 @@ public class ProfileActivity extends BaseActivity {
         NormalLog.log(this.getClass(), 2, "initView", 0);
         back2My = findViewById(R.id.back_2_my);
         back2My.setOnClickListener((view -> {
-            Intent intent = new Intent(this, MyActivity.class);
-            startActivity(intent);
             this.finish();
         }));
         edit_profile = findViewById(R.id.edit_profile);
