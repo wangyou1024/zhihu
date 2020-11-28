@@ -30,4 +30,81 @@
     <string name="creation_definition">创作中心是为创作者提供创作管理、数据分析、
         创作助力及内容创收等权益的平台，帮助优质内容创作者获得更多的认可和鼓励，
         也让创作者有机会得到更多真金白银的收益。</string>
+
+    <string name="advertise">《姐姐的爱乐之城》即将来袭</string>
+    <!--热搜词条-->
+    <string name="quit">取消</string>
+    <string name="top">《姐姐的爱乐之城》即将来袭</string>
+    <string name="top_hint">大家都在搜</string>
+    <string name="one">电影《金刚川》上映</string>
+    <string name="one_hint">致敬历史与英烈</string>
+    <string name="two">裴珠泫就耍大牌一事回应</string>
+    <string name="two_hint">你怎么看？</string>
+    <string name="three">华为Mate40系列发布</string>
+    <string name="three_hint">麒麟9000芯片多能打？</string>
+    <string name="four">中日达成双边关税减让安排</string>
+    <string name="four_hint">实现历史性突破</string>
+    <string name="five">唯品会二审败诉</string>
+    <string name="five_hint">判赔员工18万</string>
+    <string name="six">香港油麻地火灾致7死</string>
+    <string name="six_hint">重案组接手调查</string>
+    <string name="seven">第六届全国文明城市名单</string>
+    <string name="seven_hint">你的城市入选了吗？</string>
+    <string name="eight">Python之父加盟微软</string>
+    <string name="eight_hint">称退休太无聊了</string>
+    <string name="more">更多热搜内容 ></string>
+    <!--数码词条-->
+    <string name="D_one">红米Note9发布</string>
+    <string name="D_one_hint">有哪些看点值得买吗？</string>
+    <string name="D_two">双十一手机推荐</string>
+    <string name="D_two_hint">有哪些适合买的款式？</string>
+    <string name="D_three">小米Q3财报发布</string>
+    <string name="D_three_hint">有哪些值得关注的信息？</string>
+    <string name="D_four">macOS Big Sur 体验</string>
+    <string name="D_four_hint">感受如何？</string>
+    <string name="D_five">iPhone12上手体验</string>
+    <string name="D_five_hint">是否值得买</string>
+    <string name="D_six">2020年换什么头像</string>
+    <string name="D_six_hint">有哪些好看的推荐？</string>
+    <string name="D_seven">有哪些好看的手机壁纸？</string>
+    <string name="D_seven_hint">好看的壁纸万里挑一</string>
+    <string name="D_eight">Python之父加盟微软</string>
+    <string name="D_eight_hint">称退休太无聊了</string>
+    <!--影视词条-->
+    <string name="F_one">电影《金刚川》</string>
+    <string name="F_one_hint">抗美援朝纪念</string>
+    <string name="F_two">风犬少年的天空 结局</string>
+    <string name="F_two_hint">曾许人间第一流</string>
+    <string name="F_three">《暴走大事件》第七季</string>
+    <string name="F_three_hint">第一集你满意吗？</string>
+    <string name="F_four">心动的信号 3</string>
+    <string name="F_four_hint">三角修罗场再升级</string>
+    <string name="F_five">秋季新番大作战</string>
+    <string name="F_five_hint">十月最强动画</string>
+    <string name="F_six">秦时明月之沧海横流</string>
+    <string name="F_six_hint">掩日面具之下是谁？</string>
+    <string name="F_seven">庆余年第二季官宣</string>
+    <string name="F_seven_hint">原班人马回归</string>
+    <string name="F_eight">电影《喜宝》</string>
+    <string name="F_eight_hint">选择爱情还是面包</string>
+    <!--科学词条-->
+    <string name="Sc_example">科学科学科学</string>
+    <string name="Sc_example_hint">科学是很重要的！</string>
+    <!--体育词条-->
+    <string name="Sp_example">体育体育体育</string>
+    <string name="Sp_example_hint">体育是很重要的！</string>
+    <!--游戏词条-->
+    <string name="G_example">游戏游戏游戏</string>
+    <string name="G_example_hint">游戏虽好但不要沉迷！</string>
+    <!--游戏词条-->
+    <string name="E_example">百科百科百科</string>
+    <string name="E_example_hint">不懂的就问问百科全书</string>
+    <string name="score">知乎评分</string>
+    <string name="BlankScore">0</string>
+    <string name="BlankFilm">空白影片</string>
+    <string name="BlankSeries">空白剧集</string>
+    <string name="BlankVariety">空白综艺</string>
+    <string name="BlankCartoon">空白动画</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
