@@ -61,6 +61,7 @@ public class MyFragment extends Fragment {
         if (my_name != null) {
             my_name.setText(cursor.getString(2));
         }
+        NormalLog.log(this.getClass(), 2, "onResume", 1);
     }
 
     @Override
