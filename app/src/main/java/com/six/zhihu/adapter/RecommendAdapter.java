@@ -71,7 +71,6 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         vh.recommendEntity = recommendEntity;
         vh.popupMenu.setOnClickListener(bindOnClickListener(position));
         NormalLog.log(this.getClass(),2,"onBindViewHolder",1);
-
     }
 
     public View.OnClickListener bindOnClickListener(final int position){

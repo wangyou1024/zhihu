@@ -62,14 +62,16 @@
             android:hint="手机号或邮箱"
             android:textColorHint="@color/gray"
             android:theme="@style/MyEditText"/>
+
         <EditText
             android:id="@+id/count_pwd_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:hint="密码"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:theme="@style/MyEditText"/>
+            android:theme="@style/MyEditText" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
